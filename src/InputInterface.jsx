@@ -1,28 +1,28 @@
 import React, { useState } from "react";
 
-function InputInterface({ enter, setEnter }) {
-  // [localInput, setLocalInput] = useState("");
-
-  // function handleInputChange(event) {
-  //   setLocalInput(event.target.value);
-  // }
+function InputInterface({
+  enter,
+  setEnter,
+  myData,
+  setMyData,
+  items,
+  setItems,
+}) {
   function handleSaveClick() {
-    setEnter(!enter);
-
-    // setLocalInput(localInput);
+    if (!myData) {
+    } else {
+      setItems([...items, myData]);
+      setMyData("");
+    }
   }
-
-  // if (localInput) {
-  //   return <div>{localInput}</div>;
-  // }
 
   return (
     <div className="border border-white p-4 text-white rounded-md mt-4 space-y-4 font-bold">
       <h1>Create a todo</h1>
       <div>
         <input
-          // value={localInput}
-          // onChange={handleInputChange}
+          value={myData}
+          onChange={(event) => setMyData(event.target.value)}
           placeholder="Write an article about XState"
           className="rounded-md p-2 border-2 text-black border-yellow-400 w-full "
         />
