@@ -35,8 +35,14 @@ function Body() {
                 key={index}
                 className="border-2 border-yellow-400 max-w-20 rounded-md my-2"
               >
-                <div className="text-green-500 text-md font-bold  flex flex-row gap-2 justify-between sm:justify-start px-4">
-                  <h1>{elements}</h1>
+                <div
+                  className="text-green-500 text-md font-bold  flex flex-row gap-2 justify-between
+                 sm:justify-start px-4"
+                >
+                  <div className="flex gap-1 ">
+                    <input className="w-full h-full" type="checkbox" />
+                    <h1>{elements}</h1>
+                  </div>
                   <h2 className="text-red-500 hover:text-red-800 text-2xl">
                     <AiOutlineDelete onClick={() => handleRemoveItem(index)} />
                   </h2>
@@ -64,6 +70,7 @@ function Body() {
           />
         )}
       </div>
+
       <h1 className="text-xl font-bold md:text-2xl">Things done</h1>
     </div>
   );
