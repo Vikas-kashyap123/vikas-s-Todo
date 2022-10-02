@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import InputInterface from "./InputInterface";
 import Todo from "./Todo";
 
-function Body() {
+function Body({ handleThingsChange }) {
   const [enter, setEnter] = useState(false);
   const [items, setItems] = useState([]);
   const [myData, setMyData] = useState("");
   const [check, setCheck] = useState(true);
 
   function handleAddTodo() {
+    handleThingsChange(items);
     setEnter(true);
     setEnter(!enter);
   }

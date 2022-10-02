@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Error from "./Error";
 
 function InputInterface({
   enter,
@@ -8,17 +9,22 @@ function InputInterface({
   items,
   setItems,
 }) {
+  const [error, setError] = useState(false);
+
   function handleSaveClick() {
     if (!myData) {
+      setError(true);
     } else {
       setItems([...items, myData]);
       setMyData("");
+      setError(false);
     }
   }
 
   return (
     <div className="border border-white p-4 text-white rounded-md mt-4 space-y-4 font-bold">
       <h1>Create a todo</h1>
+      {error && <Error />}
       <div>
         <input
           value={myData}

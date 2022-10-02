@@ -1,7 +1,7 @@
 import React from "react";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiFillEdit } from "react-icons/ai";
 
-function Todo({ items, setItems, check, setCheck }) {
+function Todo({ items, setItems, check, setCheck, editedData }) {
   const handleRemoveItem = (id) => {
     console.log("remove Button clicked", id);
     const updatedData = items.filter((elements, index) => {
@@ -15,8 +15,12 @@ function Todo({ items, setItems, check, setCheck }) {
     setCheck(false);
   }
 
+  function handleEditClick() {
+    editedData();
+  }
+
   return (
-    <div>
+    <div className="max-w-md">
       {items.map((elements, index) => {
         return (
           <div
@@ -39,9 +43,17 @@ function Todo({ items, setItems, check, setCheck }) {
                   <h1>{elements}</h1>
                 </div>
               </div>
-              <h2 className="text-red-500 hover:text-red-800 text-2xl">
-                <AiOutlineDelete onClick={() => handleRemoveItem(index)} />
-              </h2>
+              <div className="flex">
+                <h2 className="text-red-500 hover:text-red-800 text-2xl">
+                  <AiOutlineDelete onClick={() => handleRemoveItem(index)} />
+                </h2>
+                <h1>
+                  <AiFillEdit
+                    onClick={handleEditClick}
+                    className="text-green-500 w-full h-full"
+                  />
+                </h1>
+              </div>
             </div>
           </div>
         );
