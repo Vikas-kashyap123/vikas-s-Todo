@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 
-function Todo({ items, setItems }) {
+function Todo({ items, setItems, check, setCheck }) {
   const handleRemoveItem = (id) => {
     console.log("remove Button clicked", id);
     const updatedData = items.filter((elements, index) => {
@@ -9,6 +9,11 @@ function Todo({ items, setItems }) {
     });
     setItems(updatedData);
   };
+
+  function handleCheckBox(event) {
+    setCheck(event.target.check);
+    setCheck(false);
+  }
 
   return (
     <div>
@@ -23,8 +28,16 @@ function Todo({ items, setItems }) {
                  sm:justify-start px-4"
             >
               <div className="flex gap-1 ">
-                <input className="w-full h-full" type="checkbox" />
-                <h1>{elements}</h1>
+                <div>
+                  <input
+                    className="w-full h-full"
+                    type="checkbox"
+                    onClick={() => handleCheckBox(index)}
+                  />
+                </div>
+                <div>
+                  <h1>{elements}</h1>
+                </div>
               </div>
               <h2 className="text-red-500 hover:text-red-800 text-2xl">
                 <AiOutlineDelete onClick={() => handleRemoveItem(index)} />

@@ -6,6 +6,7 @@ function Body() {
   const [enter, setEnter] = useState(false);
   const [items, setItems] = useState([]);
   const [myData, setMyData] = useState("");
+  const [check, setCheck] = useState(true);
 
   function handleAddTodo() {
     setEnter(true);
@@ -18,8 +19,17 @@ function Body() {
         <h1 className="text-white text-xl py-8 font-bold md:text-3xl ">
           Things to get done!
         </h1>
-        <h1 className=" font-semibold text-xl md:text-2xl">Things to do</h1>
 
+        {check ? (
+          <Todo
+            items={items}
+            setItems={setItems}
+            check={check}
+            setCheck={setCheck}
+          />
+        ) : (
+          <h1 className=" font-semibold text-xl md:text-2xl">Things to do</h1>
+        )}
         <button
           onClick={handleAddTodo}
           className="bg-yellow-500 hover:bg-green-400 font-bold 
@@ -38,8 +48,16 @@ function Body() {
           />
         )}
       </div>
-      <Todo items={items} setItems={setItems} />
-      <h1 className="text-xl font-bold md:text-2xl">Things done</h1>
+      {!check ? (
+        <Todo
+          items={items}
+          setItems={setItems}
+          check={check}
+          setCheck={setCheck}
+        />
+      ) : (
+        <h1 className=" font-semibold text-xl md:text-2xl">Things done</h1>
+      )}
     </div>
   );
 }
