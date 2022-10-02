@@ -1,4 +1,5 @@
 import React from "react";
+import { AiFillBug } from "react-icons/ai";
 
 function Navbar() {
   return (
@@ -12,13 +13,8 @@ function Navbar() {
             <span className="text-red-500">Vikas's</span> ToDo
           </h1>
         </div>
-        <div className="flex flex-col md:flex-row md:gap-4">
-          <h1 className="text-white text-md font-bold md:text-xl">
-            Incompleted : <span className="text-red-500 font-bold">0</span>
-          </h1>
-          <h1 className="text-white text-md font-bold md:text-xl">
-            Completed : <span className="text-green-500 font-bold">0</span>
-          </h1>
+        <div className="hover:text-green-500 text-2xl">
+          <AiFillBug />
         </div>
       </div>
     </div>

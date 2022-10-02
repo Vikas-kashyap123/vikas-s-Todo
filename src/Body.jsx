@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputInterface from "./InputInterface";
 import Todo from "./Todo";
 
-function Body({ handleThingsChange }) {
+function Body() {
   const [enter, setEnter] = useState(false);
-  const [items, setItems] = useState([]);
+
   const [myData, setMyData] = useState("");
-  const [check, setCheck] = useState(true);
+  // const [check, setCheck] = useState(true);
+
+  const getLocalItems = () => {
+    const dataList = localStorage.getItem("items");
+    if (dataList) {
+      return JSON.parse(localStorage.getItem("items"));
+    } else {
+      return [];
+    }
+  };
+  const [items, setItems] = useState(getLocalItems());
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
 
   function handleAddTodo() {
-    handleThingsChange(items);
     setEnter(true);
     setEnter(!enter);
   }
@@ -21,16 +34,6 @@ function Body({ handleThingsChange }) {
           Things to get done!
         </h1>
 
-        {check ? (
-          <Todo
-            items={items}
-            setItems={setItems}
-            check={check}
-            setCheck={setCheck}
-          />
-        ) : (
-          <h1 className=" font-semibold text-xl md:text-2xl">Things to do</h1>
-        )}
         <button
           onClick={handleAddTodo}
           className="bg-yellow-500 hover:bg-green-400 font-bold 
@@ -49,16 +52,15 @@ function Body({ handleThingsChange }) {
           />
         )}
       </div>
-      {!check ? (
-        <Todo
-          items={items}
-          setItems={setItems}
-          check={check}
-          setCheck={setCheck}
-        />
-      ) : (
-        <h1 className=" font-semibold text-xl md:text-2xl">Things done</h1>
-      )}
+
+      <Todo
+        items={items}
+        setItems={setItems}
+        // check={check}
+        // setCheck={setCheck}
+      />
+
+      <h1 className=" font-semibold text-xl md:text-2xl">Things done</h1>
     </div>
   );
 }
